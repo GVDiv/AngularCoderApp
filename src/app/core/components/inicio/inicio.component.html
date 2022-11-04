@@ -1,0 +1,22 @@
+<div class="main-home" *ngIf="sesion$ | async as sesion">
+    <div class="card-home">
+        <mat-card>
+            <mat-card-title>¡Hola, {{ sesion.usuarioActivo?.usuario }}!, Bienvenido a la appAngular</mat-card-title>
+            <mat-card-subtitle>ABM(alta, baja, modificacion) de Cursos y Lista de estudiantes</mat-card-subtitle>
+            <mat-card-content>
+                <p>
+                    En la seccion de cursos vas a poder generar uno nuevo, editar o borrar
+                </p>
+                <span>Para ingresar debe registrarse y seleccionar un tipo de usuario</span>
+                <ul>
+                    <!-- <li><strong>Visita</strong> solo lectura</li> -->
+                    <li><strong>Estudiante</strong> acceso a: Estudiantes ABM</li>
+                    <li><strong>Admin</strong> acceso total</li>
+                </ul>
+            </mat-card-content>
+            <mat-card-actions>
+              <a mat-button (click)="verLogin()">Registro</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

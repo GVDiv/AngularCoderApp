@@ -1,0 +1,31 @@
+
+.espacio{
+    flex: 1 1 auto;
+}
+
+.toolbar{
+    background-color: #333;
+    color: #fff;
+}
+
+mat-sidenav-container{
+    height: calc(205vh - 115vh);
+}
+
+mat-sidenav{
+    width: 150px;
+    background-color: #fff;
+}
+
+.menu-lateral{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.usuarioActivo{
+    padding: 1rem;
+    font-size: 1.2rem;
+}

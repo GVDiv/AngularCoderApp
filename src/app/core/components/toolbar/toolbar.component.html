@@ -1,0 +1,24 @@
+<!-- <ng-container *ngIf="sesion$ | async as sesion">
+    <div *ngIf="sesion.sesionActiva">
+        <mat-toolbar color="primary">
+            <h4>App Angular</h4>
+            <button mat-button  (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+            <button mat-button><mat-icon>home</mat-icon></button>
+            <div class="espacio"></div>
+            <a mat-button routerLink="">Inicio</a>
+            <a mat-button routerLink="autenticacion/login">Login</a>
+            <a mat-button routerLink="cursos">Cursos</a>
+            <a mat-button routerLink="alumnos">Alumnos</a>
+            <a mat-button routerLink="cursos/listar">Lista cursos</a>
+            <a mat-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo curso</a>
+        </mat-toolbar>
+        <mat-sidenav-container>
+            <mat-sidenav [(opened)]="opened" mode="side">
+                <a>Home</a>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <router-outlet></router-outlet>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</ng-container> -->

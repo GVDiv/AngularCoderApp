@@ -1,0 +1,55 @@
+
+<ng-container *ngIf="sesion$ | async as sesion">
+    <div *ngIf="sesion.sesionActiva">
+        <mat-toolbar class="toolbar">
+            <h4>App Angular</h4>
+            <button mat-button  (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+            <button mat-button routerLink="">
+                <mat-icon>home</mat-icon>
+            </button>
+            <div class="espacio"></div>
+            <a mat-button routerLink="usuario" *ngIf="sesion.usuarioActivo?.admin">
+                <!-- <span class="usuarioActivo">{{ sesion.usuarioActivo?.usuario }}</span> -->
+                <mat-icon>person</mat-icon>
+            </a>
+            <a mat-button routerLink="autenticacion/login">
+                <mat-icon>login</mat-icon>
+            </a>
+            <a mat-button routerLink="autenticacion/login">
+                <mat-icon>settings</mat-icon>
+            </a>
+        </mat-toolbar>
+    </div>
+</ng-container>
+
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+    <div class="menu-lateral">
+        <ng-container *ngIf="sesion$ | async as sesion">
+            <div *ngIf="sesion.sesionActiva">
+            <button mat-raised-button [matMenuTriggerFor]="menuCursos">Cursos</button>
+                <mat-menu #menuCursos="matMenu">
+                    <button mat-menu-item routerLink="cursos"*ngIf="sesion.usuarioActivo?.admin">Lista de cursos</button>
+                    <a mat-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo curso</a>
+                    <button mat-menu-item routerLink="cursos/listar" *ngIf="sesion.usuarioActivo?.admin">Editar cursos</button>
+                </mat-menu>
+            </div>
+        </ng-container>
+
+        <button mat-raised-button [matMenuTriggerFor]="menuAlumnos">Alumnos</button>
+        <mat-menu #menuAlumnos="matMenu">
+            <button mat-menu-item routerLink="alumnos">Alumnos Inicio</button>
+            <button mat-menu-item routerLink="alumnos/agregar">Nuevo alumno</button>
+            <button mat-menu-item routerLink="alumnos/listar">Lista alumnos</button>
+        </mat-menu>
+    </div>
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+       <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+   
+
+

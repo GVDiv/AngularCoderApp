@@ -1,0 +1,48 @@
+<div class="main-home" *ngIf="sesion$ | async as sesion">
+    <div class="card-home">
+        <mat-card>
+            <mat-card-title>Hola {{ sesion.usuarioActivo?.usuario }}, bienvenido a la seccion de cursos</mat-card-title>
+                <!-- <p>
+                    para ver el contenido de cursos debe crear un usuario y elegir el tipo de permiso que desea probar
+                </p>
+                <a mat-button (click)=" crearUsuario()">Crear usuario</a>
+                <p *ngIf="sesion.usuarioActivo?.admin"><strong>admin</strong>: permisos para editar, borrar y agregar </p>
+                <p *ngIf="sesion.usuarioActivo?.canActivateChild"><strong>canActivateChild</strong>: permisos ... </p>
+                <p *ngIf="sesion.usuarioActivo?.canLoad"><strong>canLoad</strong>: permisos ... </p>
+            -->
+            <mat-card-actions>
+              <!-- <a mat-button (click)="verCursos()">Lista de Cursos</a> -->
+              <!-- <a mat-button (click)=" verAlumnos()">Alumnos</a> -->
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    
+</div>
+
+<div class="container col-md-12">
+    <h2>Listado de cursos disponibles</h2>
+    <table class="listaCursos">
+        <thead>
+            <tr>
+                <!-- <th scope="col"></th> -->
+                <th scope="col">Curso</th>
+                <th scope="col">Comision</th>
+                <th scope="col">Profesor</th>
+                <th scope="col">Fecha inicio</th>
+                <th scope="col">Fecha Fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let curso of cursos$ | async">
+                <!-- <th scope="row">{{ i + 1 }}</th> -->
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.comision }}</td>
+                <td>{{ curso.profesor }}</td>
+                <td>{{ curso.fechaInicio | date }}</td>
+                <td>{{ curso.fechaFin | date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<router-outlet></router-outlet>
