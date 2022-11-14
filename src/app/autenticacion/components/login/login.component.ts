@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
       usuario: new FormControl('user'),
       contrasena: new FormControl('password'),
       admin: new FormControl(false),
-      canActivateChild: new FormControl(false),
-      canLoad: new FormControl(false),
+      estudiante: new FormControl(false),
+      // canLoad: new FormControl(false),
     })
   }
 
@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
       usuario: this.formulario.value.usuario,
       contrasena: this.formulario.value.contrasena,
       admin: this.formulario.value.admin,
-      canActivateChild: this.formulario.value.canActivateChild,
-      canLoad: this.formulario.value.canLoad,
+      estudiante: this.formulario.value.estudiante,
+      // canLoad: this.formulario.value.canLoad,
     }
     this.sesionService.login(usuario);
     this.router.navigate(['inicio']);

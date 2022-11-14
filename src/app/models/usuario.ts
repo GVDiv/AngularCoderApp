@@ -3,6 +3,7 @@ export interface Usuario{
     usuario: string;
     contrasena: string;
     admin: boolean;
-    canLoad: boolean;
-    canActivateChild: boolean;
+    estudiante: boolean;
+    // canLoad: boolean;
+   
 }

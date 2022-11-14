@@ -10,12 +10,12 @@ import { ListaCursosComponent } from './components/lista-cursos/lista-cursos.com
 
 const routes: Routes = [
   { path: '', component: CursosInicioComponent,
-              // canActivateChild: [AutenticacionGuard],
+              canActivate: [AutenticacionGuard],
     children:[
     { path: 'listar', component: ListaCursosComponent, canActivate: [AdminGuard] },
     { path: 'editar', component: EditarCursoComponent, canActivate: [AdminGuard] },
     { path: 'agregar', component: AgregarCursoComponent, canActivate: [AdminGuard] },
-    { path: ':id', component: DetalleCursoComponent, canLoad: [AutenticacionGuard]}
+    { path: ':id', component: DetalleCursoComponent, canActivate: [AutenticacionGuard]}
   ]} 
 ]; 
 

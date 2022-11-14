@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './core/components/inicio/inicio.component';
 import { PaginaNoEncontradaComponent } from './core/components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { AdminGuard } from './core/guards/admin.guard';
 import { AutenticacionGuard } from './core/guards/autenticacion.guard';
 
 const routes: Routes = [
-  { path: 'inicio', component: InicioComponent, 
-    // canActivate: [AutenticacionGuard]
+  { 
+    path: 'inicio', component: InicioComponent, 
+    canActivate: [AutenticacionGuard]
    },
-  { path: 'alumnos', 
+  { 
+    path: 'alumnos', 
     loadChildren: () => import('./alumnos/alumnos.module').then((m) => m.AlumnosModule),
     canActivate: [AutenticacionGuard]
   },
@@ -24,7 +27,7 @@ const routes: Routes = [
   {
     path: 'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
-    canLoad: [AutenticacionGuard]
+    canActivate: [AutenticacionGuard]
   },
   { path: '', redirectTo: 'inicio', pathMatch: 'full'},
   { path: '**', component: PaginaNoEncontradaComponent }
