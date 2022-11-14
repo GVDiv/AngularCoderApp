@@ -11,7 +11,7 @@ export class SesionService {
 
   constructor() {
     const sesion: Sesion = {
-      sesionActiva: true
+      sesionActiva: false
     };
     this.sesionSubject = new BehaviorSubject(sesion);
   }
