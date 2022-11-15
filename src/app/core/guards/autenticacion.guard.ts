@@ -25,7 +25,7 @@ export class AutenticacionGuard implements CanActivate, CanActivateChild, CanDea
         }else if(sesion.usuarioActivo?.admin){
           return true;
         }else{
-          alert("No tiene permisos para acceder a este sitio");
+          // alert("No tiene permisos para acceder a este sitio");
           this.router.navigate(['autenticacion/login']);
           return false;
         }

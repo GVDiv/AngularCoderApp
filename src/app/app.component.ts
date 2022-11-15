@@ -13,8 +13,6 @@ import { Usuario } from './models/usuario'
 export class AppComponent {
   sesion$!: Observable<Sesion>;
   opened = false;
-
-  usuarioSesion: any;
   
   constructor(
     private sesionService: SesionService,
@@ -33,6 +31,7 @@ export class AppComponent {
     this.sesionService.cerrarSesion(sesion);
     this.router.navigate(['autenticacion/login'])
   }
+  
 
   title = 'angularApp';
 }
