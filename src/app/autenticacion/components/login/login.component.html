@@ -1,5 +1,5 @@
+<!-- Formulario de registro/login -->
 <div class="login-container">
-
     <form [formGroup]="formularioLogin" (ngSubmit)="login()" class="form">
         <span class="form_title">Registro</span>
 
@@ -8,12 +8,15 @@
                 <mat-form-field appearance="fill" class="fill">
                     <mat-label>Usuario</mat-label>
                     <input matInput formControlName="usuario">
+                    <p *ngIf="formularioLogin.get('usuario')?.touched && formularioLogin.get('usuario')?.errors?.['required']">El campo usuario es requerido</p>
                 </mat-form-field>
             </div>
             <div class="form_group">
                 <mat-form-field appearance="fill" class="fill">
                     <mat-label>Contrasena</mat-label>
                     <input matInput type="password" formControlName="contrasena">
+                    <p *ngIf="formularioLogin.get('contrasena')?.touched && formularioLogin.get('contrasena')?.errors?.['required']">El campo contraseña es requerido</p>
+                    <p *ngIf="formularioLogin.get('contrasena')?.touched && formularioLogin.get('contrasena')?.errors?.['minlength']">La contraseña debe tener minimo 6 caracteres</p>
                 </mat-form-field>
             </div>
         </div>

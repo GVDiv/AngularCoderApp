@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder
   ){
     this.formularioLogin = fb.group({
-      usuario: new FormControl('', Validators.required),
-      contrasena: new FormControl('', Validators.required),
-      estudiante: new FormControl(false, Validators.required),
-      admin: new FormControl(false, Validators.required)
+      usuario: new FormControl('', [Validators.required]),
+      contrasena: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      estudiante: new FormControl(false, [Validators.required]),
+      admin: new FormControl(false, [Validators.required])
     })
   }
 

@@ -3,7 +3,9 @@
     <div *ngIf="sesion.sesionActiva">
         <mat-toolbar class="toolbar">
             <h4>App Angular</h4>
-            <button mat-button  (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+            <button mat-button 
+                (click)="opened=!opened"  
+            ><mat-icon>menu</mat-icon></button>
             <button mat-button routerLink="" *ngIf="sesion.sesionActiva">
                 <mat-icon>home</mat-icon>
             </button>
@@ -23,8 +25,8 @@
     </div>
 </ng-container>
 
-<mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="side">
+<mat-sidenav-container *ngIf="sesion$ | async as sesion">
+    <mat-sidenav [(opened)]="opened" mode="side" *ngIf="sesion.sesionActiva">
     <div class="menu-lateral">
         <ng-container *ngIf="sesion$ | async as sesion">
             <div>
