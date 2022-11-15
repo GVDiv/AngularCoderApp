@@ -12,7 +12,8 @@
                 <!-- <span class="usuarioActivo">{{ sesion.usuarioActivo?.usuario }}</span> -->
                 <mat-icon>person</mat-icon>
             </a>
-            <a mat-button routerLink="autenticacion/login">
+            <a mat-button (click)="cerrarSesion()">
+                <!-- boton de salir -->
                 <mat-icon>login</mat-icon>
             </a>
             <a mat-button routerLink="autenticacion/login">

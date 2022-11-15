@@ -28,4 +28,8 @@ export class SesionService {
   obtenerSesion(): Observable<Sesion>{
     return this.sesionSubject.asObservable();
   }
+
+  cerrarSesion(sesion: Sesion){
+     return this.sesionSubject.next(sesion);
+  }
 }

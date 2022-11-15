@@ -1,6 +1,6 @@
 <div class="login-container">
 
-    <form [formGroup]="formulario" (ngSubmit)="login()" class="form">
+    <form [formGroup]="formularioLogin" (ngSubmit)="login()" class="form">
         <span class="form_title">Registro</span>
 
         <div class="form_container">
@@ -13,7 +13,7 @@
             <div class="form_group">
                 <mat-form-field appearance="fill" class="fill">
                     <mat-label>Contrasena</mat-label>
-                    <input matInput formControlName="contrasena">
+                    <input matInput type="password" formControlName="contrasena">
                 </mat-form-field>
             </div>
         </div>
@@ -23,7 +23,13 @@
             <mat-slide-toggle formControlName="admin">Admin</mat-slide-toggle>
         </div>
 
-        <button class="form_submit" type="submit" mat-raised-button color="primary">Entrar</button>
+        <button class="form_submit" 
+                type="submit" 
+                mat-raised-button color="primary"
+                [disabled]="!formularioLogin.valid"        
+                >
+                Entrar
+        </button>
     </form>
 
 </div>
