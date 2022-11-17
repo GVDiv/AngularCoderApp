@@ -17,7 +17,31 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('se crea el componente', () => {
     expect(component).toBeTruthy();
   });
-});
+
+  it('El formulario se mantiene invalido cuando no ingreso un nombre de usuario', () => {
+    const formularioLogin = component.formularioLogin;
+    const usuario = formularioLogin.controls['usuario'];
+
+    usuario.setValue('123321');
+
+    expect(formularioLogin.valid).toBeFalse();
+    })
+  
+  it('El formulario se mantiene valido cuando ingreso un nombre de usuario', () => {
+    const formularioLogin = component.formularioLogin;
+    const usuario = formularioLogin.controls['usuario'];
+
+    usuario.setValue('Gabriel');
+
+    expect(formularioLogin.valid).toBeTrue();
+
+  })
+
+
+
+
+
+  })

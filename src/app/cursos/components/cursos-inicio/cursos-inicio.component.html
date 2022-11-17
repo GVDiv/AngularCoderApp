@@ -1,31 +1,10 @@
-<div class="main-home" *ngIf="sesion$ | async as sesion">
-    <div class="card-home">
-        <mat-card>
-            <mat-card-title>Hola {{ sesion.usuarioActivo?.usuario }}, bienvenido a la seccion de cursos</mat-card-title>
-                <!-- <p>
-                    para ver el contenido de cursos debe crear un usuario y elegir el tipo de permiso que desea probar
-                </p>
-                <a mat-button (click)=" crearUsuario()">Crear usuario</a>
-                <p *ngIf="sesion.usuarioActivo?.admin"><strong>admin</strong>: permisos para editar, borrar y agregar </p>
-                <p *ngIf="sesion.usuarioActivo?.canActivateChild"><strong>canActivateChild</strong>: permisos ... </p>
-                <p *ngIf="sesion.usuarioActivo?.canLoad"><strong>canLoad</strong>: permisos ... </p>
-            -->
-            <mat-card-actions>
-              <!-- <a mat-button (click)="verCursos()">Lista de Cursos</a> -->
-              <!-- <a mat-button (click)=" verAlumnos()">Alumnos</a> -->
-            </mat-card-actions>
-        </mat-card>
-    </div>
-
-    
-</div>
-
+<!-- 
 <div class="container col-md-12">
     <h2>Listado de cursos disponibles</h2>
     <table class="listaCursos">
         <thead>
             <tr>
-                <!-- <th scope="col"></th> -->
+                
                 <th scope="col">Curso</th>
                 <th scope="col">Comision</th>
                 <th scope="col">Profesor</th>
@@ -35,7 +14,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let curso of cursos$ | async">
-                <!-- <th scope="row">{{ i + 1 }}</th> -->
+                
                 <td>{{ curso.nombre }}</td>
                 <td>{{ curso.comision }}</td>
                 <td>{{ curso.profesor }}</td>
@@ -44,5 +23,48 @@
             </tr>
         </tbody>
     </table>
-</div>
+</div> -->
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>nombre</th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="comision">
+        <th mat-header-cell *matHeaderCellDef>comision</th>
+        <td mat-cell *matCellDef="let element"> {{element.comision}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="profesor">
+        <th mat-header-cell *matHeaderCellDef>profesor</th>
+        <td mat-cell *matCellDef="let element"> {{element.profesor}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef>fechaInicio</th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaFin">
+        <th mat-header-cell *matHeaderCellDef>fechaFin</th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   >
+    </mat-paginator>
+  </div>
+  
 <router-outlet></router-outlet>

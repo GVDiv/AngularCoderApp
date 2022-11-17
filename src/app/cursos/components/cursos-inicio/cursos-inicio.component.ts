@@ -1,19 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Curso } from 'src/app/models/curso';
 import { Sesion } from 'src/app/models/sesion';
 import { CursoService } from '../../services/curso.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-cursos-inicio',
   templateUrl: './cursos-inicio.component.html',
   styleUrls: ['./cursos-inicio.component.css']
 })
-export class CursosInicioComponent implements OnInit {
+export class CursosInicioComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   sesion$!: Observable<Sesion>;
   cursos$!: Observable<Curso[]>;
+
+  suscripcion: any;
+  datosCursos!: Curso[];
+  
+  dataSource = new MatTableDataSource<Curso>([]);
+  displayedColumns: string[] = ['nombre', 'comision', 'profesor', 'fechaInicio', 'fechaFin'];
+  
 
   constructor(
     private sesionService: SesionService,
@@ -21,17 +32,31 @@ export class CursosInicioComponent implements OnInit {
     private router: Router
   ) { }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   ngOnInit(): void {
-    this.cursos$ = this.cursoService.obtenerCursos();
+
+    this.suscripcion = this.cursoService.obtenerCursos().subscribe({
+      next: (cursos: Curso[]) => {
+        this.datosCursos = cursos;
+        this.dataSource.data = this.datosCursos
+        // console.log(cursos),
+        // console.log(this.datosCursos)
+      }
+    })
+
     this.sesion$ = this.sesionService.obtenerSesion();
   }
 
-  verCursos(){
+  listaCursos(){
     this.router.navigate(['/cursos/listar']);
   }
 
-  crearUsuario(){
-    this.router.navigate(['autenticacion/login']);
+  agregarCurso(){
+    this.router.navigate(['/cursos/agregar']);
   }
+  
 
 }

@@ -17,7 +17,7 @@ describe('ListaCursosComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('se crea el componente', () => {
     expect(component).toBeTruthy();
   });
 });

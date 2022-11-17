@@ -4,7 +4,6 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { SesionService } from './services/sesion.service';
 import { MaterialModule } from '../material.module';
-import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -12,7 +11,6 @@ import { FooterComponent } from './components/footer/footer.component';
   declarations: [
     InicioComponent,
     PaginaNoEncontradaComponent,
-    FooterComponent
   ],
   imports: [
     CommonModule,

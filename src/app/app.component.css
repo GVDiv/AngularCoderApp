@@ -3,6 +3,11 @@
     flex: 1 1 auto;
 }
 
+.toolbar{
+    color: #fff;
+    background-color: #333;
+}
+
 mat-sidenav-container{
     height: calc(205vh - 115vh);
 }
@@ -19,6 +24,9 @@ mat-sidenav{
     gap: 1.5rem;
     align-items: center;
 }
+.menu-lateral button{
+    width: 100%;
+}
 
 .usuarioActivo{
     padding: 1rem;
@@ -27,11 +35,11 @@ mat-sidenav{
 
 .footer{
     width: 100%;
-    height: 70px;
+    height: 80px;
     padding-top: 20px;
 
-    background-color: #333;
-    color: #fff;
+    background-color: rgb(236, 221, 92);
+    color: rgb(0, 0, 0);
 
     text-align: center;
 }
@@ -39,5 +47,5 @@ mat-sidenav{
     font-size: 1.2rem;
     font-weight: 300;
     letter-spacing: 1px;
-    opacity: .8;
+    opacity: .9;
 }

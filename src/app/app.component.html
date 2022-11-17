@@ -27,29 +27,50 @@
 
 <mat-sidenav-container *ngIf="sesion$ | async as sesion">
     <mat-sidenav [(opened)]="opened" mode="side" *ngIf="sesion.sesionActiva">
-    <div class="menu-lateral">
-        <ng-container *ngIf="sesion$ | async as sesion">
-            <div>
-                <button mat-raised-button [matMenuTriggerFor]="menuCursos">Cursos</button>
-                <mat-menu #menuCursos="matMenu">
-                    <button mat-menu-item routerLink="cursos">Lista de cursos</button>
-                    <a mat-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo curso</a>
-                    <button mat-menu-item routerLink="cursos/listar" *ngIf="sesion.usuarioActivo?.admin">Editar cursos</button>
-                </mat-menu>
-            </div>
-        </ng-container>
+        <div class="menu-lateral">
+            <ng-container *ngIf="sesion$ | async as sesion">
+                <!-- <div>
+                    <button mat-raised-button [matMenuTriggerFor]="menuCursos">Cursos</button>
+                    <mat-menu #menuCursos="matMenu">
+                        <button mat-menu-item routerLink="cursos">Lista de cursos</button>
+                        <a mat-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo curso</a>
+                        <button mat-menu-item routerLink="cursos/listar" *ngIf="sesion.usuarioActivo?.admin">Editar cursos</button>
+                    </mat-menu>
+                </div> -->
 
-        <ng-container *ngIf="sesion$ | async as sesion">
-            <div>
-                <button mat-raised-button [matMenuTriggerFor]="menuAlumnos">Alumnos</button>
-                <mat-menu #menuAlumnos="matMenu">
-                    <button mat-menu-item routerLink="alumnos">Alumnos Inicio</button>
-                    <button mat-menu-item routerLink="alumnos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo alumno</button>
-                    <button mat-menu-item routerLink="alumnos/listar" *ngIf="sesion.usuarioActivo?.admin">Lista alumnos</button>
-                </mat-menu>
-            </div>
-        </ng-container>
-    </div>
+                <button  mat-raised-button routerLink="cursos" >
+                    <mat-icon>computer</mat-icon>
+                    <p>Cursos</p>
+                </button>
+
+                <button  mat-raised-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">
+                    <mat-icon>upgrade</mat-icon>
+                    <p>Agregar curso</p>
+                </button>
+
+                <button  mat-raised-button routerLink="cursos/listar" *ngIf="sesion.usuarioActivo?.admin">
+                    <mat-icon>editsquare</mat-icon>
+                    <p>Editar curso</p>
+                </button>
+
+                <button  mat-raised-button routerLink="cursos" >
+                    <mat-icon>school</mat-icon>
+                    <p>Estudiante</p>
+                </button>
+
+            </ng-container>
+
+            <!-- <ng-container *ngIf="sesion$ | async as sesion">
+                <div>
+                    <button mat-raised-button [matMenuTriggerFor]="menuAlumnos">Alumnos</button>
+                    <mat-menu #menuAlumnos="matMenu">
+                        <button mat-menu-item routerLink="alumnos">Alumnos Inicio</button>
+                        <button mat-menu-item routerLink="alumnos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo alumno</button>
+                        <button mat-menu-item routerLink="alumnos/listar" *ngIf="sesion.usuarioActivo?.admin">Lista alumnos</button>
+                    </mat-menu>
+                </div>
+            </ng-container> -->
+        </div>
     </mat-sidenav>
 
 
