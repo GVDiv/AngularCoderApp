@@ -57,6 +57,22 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
   agregarCurso(){
     this.router.navigate(['/cursos/agregar']);
   }
+
+  filtrarCurso(event: Event){
+    const valorObtenido = (event?.target as HTMLInputElement).value;
+    this.dataSource.filterPredicate = function(curso: Curso, filtro: string){
+      return curso.nombre.toLowerCase().includes(filtro.toLocaleLowerCase());
+    }
+    this.dataSource.filter = valorObtenido.trim().toLowerCase();
+  }
+
+  filtrarComision(event: Event){
+    const valorObtenido = (event?.target as HTMLInputElement).value;
+    this.dataSource.filterPredicate = function(curso: Curso, filtro: string){
+      return curso.comision.toLowerCase().includes(filtro.toLocaleLowerCase());
+    }
+    this.dataSource.filter = valorObtenido.trim().toLowerCase();
+  }
   
 
 }

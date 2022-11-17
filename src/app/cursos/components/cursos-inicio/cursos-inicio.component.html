@@ -1,60 +1,42 @@
-<!-- 
-<div class="container col-md-12">
-    <h2>Listado de cursos disponibles</h2>
-    <table class="listaCursos">
-        <thead>
-            <tr>
-                
-                <th scope="col">Curso</th>
-                <th scope="col">Comision</th>
-                <th scope="col">Profesor</th>
-                <th scope="col">Fecha inicio</th>
-                <th scope="col">Fecha Fin</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let curso of cursos$ | async">
-                
-                <td>{{ curso.nombre }}</td>
-                <td>{{ curso.comision }}</td>
-                <td>{{ curso.profesor }}</td>
-                <td>{{ curso.fechaInicio | date }}</td>
-                <td>{{ curso.fechaFin | date }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
 
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-  
-      <!-- Position Column -->
+    <div class="row filtros">
+        <span class="col-md-3 title">Tabla de cursos</span>
+        <mat-form-field class="col-md-3">
+            <mat-label>Filtrar por nombre de curso</mat-label>
+            <input type="text" matInput (keyup)="filtrarCurso($event)">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Filtrar por numero de comision</mat-label>
+            <input type="text" matInput (keyup)="filtrarComision($event)">
+        </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="col-md-12">
+
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef>nombre</th>
-        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.nombre | uppercase}} </td>
       </ng-container>
   
-      <!-- Name Column -->
       <ng-container matColumnDef="comision">
         <th mat-header-cell *matHeaderCellDef>comision</th>
         <td mat-cell *matCellDef="let element"> {{element.comision}} </td>
       </ng-container>
-  
-      <!-- Weight Column -->
+
       <ng-container matColumnDef="profesor">
         <th mat-header-cell *matHeaderCellDef>profesor</th>
         <td mat-cell *matCellDef="let element"> {{element.profesor}} </td>
       </ng-container>
-  
-      <!-- Symbol Column -->
+
       <ng-container matColumnDef="fechaInicio">
         <th mat-header-cell *matHeaderCellDef>fechaInicio</th>
-        <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date: 'dd/mm/yyyy'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="fechaFin">
         <th mat-header-cell *matHeaderCellDef>fechaFin</th>
-        <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fechaFin | date: 'dd/mm/yyyy'}} </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
