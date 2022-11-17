@@ -29,35 +29,22 @@
     <mat-sidenav [(opened)]="opened" mode="side" *ngIf="sesion.sesionActiva">
         <div class="menu-lateral">
             <ng-container *ngIf="sesion$ | async as sesion">
-                <!-- <div>
-                    <button mat-raised-button [matMenuTriggerFor]="menuCursos">Cursos</button>
-                    <mat-menu #menuCursos="matMenu">
-                        <button mat-menu-item routerLink="cursos">Lista de cursos</button>
-                        <a mat-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo curso</a>
-                        <button mat-menu-item routerLink="cursos/listar" *ngIf="sesion.usuarioActivo?.admin">Editar cursos</button>
-                    </mat-menu>
-                </div> -->
-
                 <button  mat-raised-button routerLink="cursos" >
                     <mat-icon>computer</mat-icon>
                     <p>Cursos</p>
                 </button>
-
                 <button  mat-raised-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">
                     <mat-icon>upgrade</mat-icon>
                     <p>Agregar curso</p>
                 </button>
-
                 <button  mat-raised-button routerLink="cursos/listar" *ngIf="sesion.usuarioActivo?.admin">
                     <mat-icon>editsquare</mat-icon>
                     <p>Editar curso</p>
                 </button>
-
                 <button  mat-raised-button routerLink="cursos" >
                     <mat-icon>school</mat-icon>
                     <p>Estudiante</p>
                 </button>
-
             </ng-container>
 
             <!-- <ng-container *ngIf="sesion$ | async as sesion">
@@ -79,5 +66,5 @@
     </mat-sidenav-content>
 </mat-sidenav-container>
 <div class="footer">
-   <span>angularApp</span>
+   <span>CoderHouse curso de Angular</span>
 </div>
