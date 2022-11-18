@@ -11,6 +11,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { AlumnosModule } from './alumnos/alumnos.module';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { AlumnosModule } from './alumnos/alumnos.module';
     FormsModule,
     AutenticacionModule,
     CursosModule,
-    AlumnosModule
+    AlumnosModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

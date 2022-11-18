@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from '../../services/curso.service';
 
@@ -16,7 +17,8 @@ export class EditarCursoComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private cursoService: CursoService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
 
   }
@@ -60,7 +62,7 @@ export class EditarCursoComponent implements OnInit {
     }
 
     this.cursoService.editarCurso(c);
-
+    this.toastr.info('El curso fue editado con exito!', 'Curso editado');
     this.router.navigate(['cursos/listar'])
   }
 

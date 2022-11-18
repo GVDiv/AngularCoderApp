@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from 'src/app/cursos/services/curso.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-agregar-curso',
@@ -14,7 +15,8 @@ export class AgregarCursoComponent implements OnInit {
 
   constructor(
     private cursoService: CursoService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.formulario = new FormGroup({
       nombre: new FormControl('VueJS', [Validators.required]),
@@ -39,6 +41,7 @@ export class AgregarCursoComponent implements OnInit {
     };
     console.log(curso);
     this.cursoService.agregarCurso(curso);
+    this.toastr.success('El curso fue registrado con exito!', 'Curso registrado');
     this.router.navigate(['cursos/listar']); // localhost/cursos/listar
   }
 

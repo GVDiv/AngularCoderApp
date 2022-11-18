@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DetalleCursoComponent } from '../detalle-curso/detalle-curso.component';
 import { Sesion } from 'src/app/models/sesion';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -19,7 +20,8 @@ export class ListaCursosComponent implements OnInit {
   constructor(
     private cursoService: CursoService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +30,8 @@ export class ListaCursosComponent implements OnInit {
 
   eliminarCurso(id: number){
     this.cursoService.eliminarCurso(id);
-    this.cursos$ = this.cursoService.obtenerCursos()
+    this.cursos$ = this.cursoService.obtenerCursos();
+    this.toastr.error('El curso fue eliminado con exito!', 'Curso eliminado');
   }
 
   editarCurso(curso: Curso){
