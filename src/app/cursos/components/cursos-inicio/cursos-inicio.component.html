@@ -1,16 +1,20 @@
 
 <div class="mat-elevation-z8">
-    <div class="row filtros">
-        <span class="col-md-3 title">Tabla de cursos</span>
-        <mat-form-field class="col-md-3">
+    <div class="d-flex">
+        <div class="p-2 flex-grow-1">
+          <span class="col-md-6 title">Tabla de cursos</span>
+        </div>
+        <div class="float-end">
+          <mat-form-field class="p-2">
             <mat-label>Filtrar por nombre de curso</mat-label>
             <input type="text" matInput (keyup)="filtrarCurso($event)">
         </mat-form-field>
 
-        <mat-form-field class="col-md-3">
+        <mat-form-field class="p-2">
             <mat-label>Filtrar por numero de comision</mat-label>
             <input type="text" matInput (keyup)="filtrarComision($event)">
         </mat-form-field>
+        </div>
     </div>
     <table mat-table [dataSource]="dataSource" class="col-md-12">
 
