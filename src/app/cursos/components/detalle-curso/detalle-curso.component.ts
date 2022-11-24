@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Curso } from 'src/app/models/curso';
@@ -14,7 +14,8 @@ export class DetalleCursoComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private cursoService: CursoService
+    private cursoService: CursoService,
+
   ) { }
 
   ngOnInit(): void {

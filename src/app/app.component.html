@@ -34,12 +34,14 @@
                     <p>Cursos</p>
                 </button>
                 <button  mat-raised-button 
-                        (click)="openDialog()"
+                        (click)="dialogAgregarCurso()"
                          *ngIf="sesion.usuarioActivo?.admin">
                     <mat-icon>upgrade</mat-icon>
                     <p>Agregar curso</p>
                 </button>
-                <button  mat-raised-button routerLink="cursos/listar" *ngIf="sesion.usuarioActivo?.admin">
+                <button  mat-raised-button 
+                        (click)="dialogListarCurso()"
+                        *ngIf="sesion.usuarioActivo?.admin">
                     <mat-icon>editsquare</mat-icon>
                     <p>Editar curso</p>
                 </button>

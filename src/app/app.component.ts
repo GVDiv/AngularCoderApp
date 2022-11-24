@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SesionService } from './core/services/sesion.service';
 import { AgregarCursoComponent } from './cursos/components/agregar-curso/agregar-curso.component';
+import { ListaCursosComponent } from './cursos/components/lista-cursos/lista-cursos.component';
 import { Sesion } from './models/sesion';
 import { Usuario } from './models/usuario'
 
@@ -35,8 +36,16 @@ export class AppComponent {
     this.router.navigate(['autenticacion/login'])
   }
 
-  openDialog(): void {
+  dialogAgregarCurso(): void {
     const dialogRef = this.dialog.open(AgregarCursoComponent, {});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
+  dialogListarCurso(){
+    const dialogRef = this.dialog.open(ListaCursosComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

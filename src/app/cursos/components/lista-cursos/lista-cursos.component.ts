@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from 'src/app/cursos/services/curso.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DetalleCursoComponent } from '../detalle-curso/detalle-curso.component';
 import { Sesion } from 'src/app/models/sesion';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -21,7 +21,10 @@ export class ListaCursosComponent implements OnInit {
     private cursoService: CursoService,
     private router: Router,
     public dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialogRef: MatDialogRef<ListaCursosComponent>,
+
+    @Inject(MAT_DIALOG_DATA) public data: Curso,
   ) { }
 
   ngOnInit(): void {
@@ -36,10 +39,6 @@ export class ListaCursosComponent implements OnInit {
 
   editarCurso(curso: Curso){
     this.router.navigate(['cursos/editar', curso]);
-  }
-  
-  openDialog() {
-      this.dialog.open(DetalleCursoComponent);
   }
 
 

@@ -1,11 +1,20 @@
-<h1>Detalle de curso</h1>
+<div class="detailContainer">
+    <div class="detail">
+        <div class="detailHeader">
+            <h1>Detalle de curso</h1>
+            <a routerLink="/cursos">
+                <mat-icon>close</mat-icon>
+            </a>
+        </div>
 
-<div *ngIf="(curso$ | async)">
-    <pre>
-    {{ curso$ | async | json }}
-    </pre>
-</div>
+        <div *ngIf="(curso$ | async)">
+            <pre>
+            {{ curso$ | async | json }}
+            </pre>
+        </div>
 
-<div *ngIf="!(curso$ | async)">
-    <p>No se encontró el curso</p>
+        <div *ngIf="!(curso$ | async)">
+            <p>No se encontró el curso</p>
+        </div>
+    </div>
 </div>

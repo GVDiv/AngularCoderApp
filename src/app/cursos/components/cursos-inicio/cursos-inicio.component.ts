@@ -23,13 +23,13 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
   datosCursos!: Curso[];
   
   dataSource = new MatTableDataSource<Curso>([]);
-  displayedColumns: string[] = ['nombre', 'comision', 'profesor', 'fechaInicio', 'fechaFin'];
+  displayedColumns: string[] = ['nombre', 'comision', 'profesor', 'fechaInicio', 'fechaFin', 'detalle'];
   
 
   constructor(
     private sesionService: SesionService,
     private cursoService: CursoService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngAfterViewInit() {
@@ -73,6 +73,5 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
     }
     this.dataSource.filter = valorObtenido.trim().toLowerCase();
   }
-  
 
 }

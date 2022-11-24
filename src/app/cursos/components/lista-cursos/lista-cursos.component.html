@@ -1,6 +1,6 @@
 <h1>Lista de cursos</h1>
 
-<div class="row">
+<div class="row cursoCards">
     <div *ngFor="let curso of cursos$ | async" class="col-md-3">
     <mat-card>
         <mat-card-header>
@@ -22,9 +22,11 @@
                 <mat-icon>visibility</mat-icon>
             </button> -->
 
-            <button mat-icon-button [routerLink]="'/cursos/'+curso.id">
+            <!-- <button mat-icon-button
+                    [routerLink]="'/cursos/'+curso.id"
+                    >
                 <mat-icon>visibility</mat-icon>
-            </button>
+            </button> -->
 
             <button mat-icon-button color="primary" (click)="editarCurso(curso)">
                 <mat-icon>edit</mat-icon>
