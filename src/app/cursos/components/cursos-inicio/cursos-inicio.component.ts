@@ -7,6 +7,7 @@ import { Sesion } from 'src/app/models/sesion';
 import { CursoService } from '../../services/curso.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cursos-inicio',
@@ -23,13 +24,14 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
   datosCursos!: Curso[];
   
   dataSource = new MatTableDataSource<Curso>([]);
-  displayedColumns: string[] = ['nombre', 'comision', 'profesor', 'fechaInicio', 'fechaFin', 'detalle'];
+  displayedColumns: string[] = ['nombre', 'comision', 'profesor', 'fechaInicio', 'fechaFin', 'detalle', 'editar', 'eliminar'];
   
 
   constructor(
     private sesionService: SesionService,
     private cursoService: CursoService,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngAfterViewInit() {
@@ -56,6 +58,16 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
 
   agregarCurso(){
     this.router.navigate(['/cursos/agregar']);
+  }
+
+  editarCurso(curso: Curso){
+    this.router.navigate(['cursos/editar', curso]);
+  }
+
+  eliminarCurso(id: number){
+    this.cursoService.eliminarCurso(id);
+    this.cursos$ = this.cursoService.obtenerCursos();
+    this.toastr.error('El curso fue eliminado con exito!', 'Curso eliminado');
   }
 
   filtrarCurso(event: Event){

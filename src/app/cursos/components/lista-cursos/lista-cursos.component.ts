@@ -1,12 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from 'src/app/cursos/services/curso.service';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { Sesion } from 'src/app/models/sesion';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -20,11 +18,7 @@ export class ListaCursosComponent implements OnInit {
   constructor(
     private cursoService: CursoService,
     private router: Router,
-    public dialog: MatDialog,
     private toastr: ToastrService,
-    public dialogRef: MatDialogRef<ListaCursosComponent>,
-
-    @Inject(MAT_DIALOG_DATA) public data: Curso,
   ) { }
 
   ngOnInit(): void {
