@@ -1,4 +1,4 @@
-.agregarCursoContainer{
+/* .agregarCursoContainer{
     position: absolute;
     z-index: 99;
     bottom: 0;
@@ -7,6 +7,8 @@
     border-radius: 20px;
     background-color: #fff;
     box-shadow: 3px 5px 5px 5px rgba(0, 0, 0, 30%);
+    transition: transform 1s;
+    transform: translateX(10%);
 }
 .headerCursos{
     display: flex;
@@ -24,4 +26,4 @@ mat-icon{
 
 .formularioCurso{
     margin: 2rem 2rem;
-}
+} */

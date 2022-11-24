@@ -1,10 +1,5 @@
 <div class="agregarCursoContainer">
-    <div class="headerCursos">
-        <h3 class="title">Agregar curso</h3>
-        <a routerLink="/cursos">
-            <mat-icon>cancel</mat-icon>
-        </a>
-    </div>
+    <h3 class="title">Agregar curso</h3>
     <div class="formularioCurso">
         <form [formGroup]="formulario" (ngSubmit)="agregarCurso()">
             <div class="columns">
@@ -54,7 +49,12 @@
                 </div>
     
                 <div class="col-md-12">
-                    <button mat-raised-button color="primary" type="submit" class="fill mt-3">Agregar curso</button>
+                    <button mat-raised-button color="primary"
+                            type="submit" 
+                            class="fill mt-3"
+                            [disabled]="!formulario.valid">
+                            Agregar curso
+                    </button>
                 </div>
             </div>
         </form>

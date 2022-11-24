@@ -33,7 +33,9 @@
                     <mat-icon>computer</mat-icon>
                     <p>Cursos</p>
                 </button>
-                <button  mat-raised-button routerLink="cursos/agregar" *ngIf="sesion.usuarioActivo?.admin">
+                <button  mat-raised-button 
+                        (click)="openDialog()"
+                         *ngIf="sesion.usuarioActivo?.admin">
                     <mat-icon>upgrade</mat-icon>
                     <p>Agregar curso</p>
                 </button>

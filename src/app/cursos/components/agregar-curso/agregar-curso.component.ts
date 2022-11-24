@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from 'src/app/cursos/services/curso.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-agregar-curso',
@@ -16,15 +17,18 @@ export class AgregarCursoComponent implements OnInit {
   constructor(
     private cursoService: CursoService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialogRef: MatDialogRef<AgregarCursoComponent>,
+
+    @Inject(MAT_DIALOG_DATA) public data: Curso,
   ) {
     this.formulario = new FormGroup({
-      nombre: new FormControl('VueJS', [Validators.required]),
-      comision: new FormControl(),
-      profesor: new FormControl(),
-      inicio: new FormControl(),
-      fin: new FormControl(),
-      inscripcionAbierta: new FormControl()
+      nombre: new FormControl('', [Validators.required]),
+      comision: new FormControl('', [Validators.required]),
+      profesor: new FormControl('', [Validators.required]),
+      inicio: new FormControl('', [Validators.required]),
+      fin: new FormControl('', [Validators.required]),
+      inscripcionAbierta: new FormControl('', [Validators.required])
     });
   }
 
@@ -40,6 +44,7 @@ export class AgregarCursoComponent implements OnInit {
       imagen: 'https://parentesis.com/imagesPosts/coder00.jpg'
     };
     console.log(curso);
+    this.dialogRef.close();
     this.cursoService.agregarCurso(curso);
     this.toastr.success('El curso fue registrado con exito!', 'Curso registrado');
     this.router.navigate(['cursos/listar']); // localhost/cursos/listar

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SesionService } from './core/services/sesion.service';
+import { AgregarCursoComponent } from './cursos/components/agregar-curso/agregar-curso.component';
 import { Sesion } from './models/sesion';
 import { Usuario } from './models/usuario'
 
@@ -16,7 +18,8 @@ export class AppComponent {
   
   constructor(
     private sesionService: SesionService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +33,15 @@ export class AppComponent {
     }
     this.sesionService.cerrarSesion(sesion);
     this.router.navigate(['autenticacion/login'])
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AgregarCursoComponent, {});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
   }
   
 
