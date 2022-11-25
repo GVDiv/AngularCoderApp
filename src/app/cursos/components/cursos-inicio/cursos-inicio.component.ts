@@ -36,6 +36,7 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.sesion$ = this.sesionService.obtenerSesion();
   }
 
   ngOnInit(): void {
@@ -85,5 +86,7 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
     }
     this.dataSource.filter = valorObtenido.trim().toLowerCase();
   }
+
+
 
 }
