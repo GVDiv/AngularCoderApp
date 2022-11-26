@@ -3,8 +3,8 @@
     <div *ngIf="sesion.sesionActiva">
         <mat-toolbar class="toolbar">
             <h4>App Angular</h4>
-            <button mat-button 
-                (click)="opened=!opened"  
+            <button mat-button
+                (click)="opened=!opened"
             ><mat-icon>menu</mat-icon></button>
             <button mat-button routerLink="" *ngIf="sesion.sesionActiva">
                 <mat-icon>home</mat-icon>
@@ -33,18 +33,18 @@
                     <mat-icon>computer</mat-icon>
                     <p>Cursos</p>
                 </button>
-                <button  mat-raised-button 
+                <button  mat-raised-button
                         (click)="dialogAgregarCurso()"
                          *ngIf="sesion.usuarioActivo?.admin">
                     <mat-icon>upgrade</mat-icon>
                     <p>Agregar curso</p>
                 </button>
-                <button  mat-raised-button 
+                <!-- <button  mat-raised-button
                         (click)="dialogListarCurso()"
                         *ngIf="sesion.usuarioActivo?.admin">
                     <mat-icon>editsquare</mat-icon>
                     <p>Editar curso</p>
-                </button>
+                </button> -->
                 <button  mat-raised-button routerLink="cursos" >
                     <mat-icon>school</mat-icon>
                     <p>Estudiante</p>

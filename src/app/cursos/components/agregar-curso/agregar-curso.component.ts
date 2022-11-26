@@ -47,7 +47,7 @@ export class AgregarCursoComponent implements OnInit {
     this.dialogRef.close();
     this.cursoService.agregarCurso(curso);
     this.toastr.success('El curso fue registrado con exito!', 'Curso registrado');
-    this.router.navigate(['cursos/listar']); // localhost/cursos/listar
+    this.router.navigate(['/cursos']); // localhost/cursos/listar
   }
 
   ngOnInit(): void {
