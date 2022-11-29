@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { ToastrModule } from 'ngx-toastr';
+import { StoreModule } from '@ngrx/store';
+import { ROOT_REDUCERS } from './state/app.state';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     AutenticacionModule,
     CursosModule,
     AlumnosModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    StoreModule.forRoot(ROOT_REDUCERS)
   ],
   providers: [],
   bootstrap: [AppComponent]
