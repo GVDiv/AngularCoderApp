@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { cargarCursos, cursosCargados } from 'src/app/state/actions/cursos.actions';
-import { selectorCargandoCursos, selectorCursosCargados } from 'src/app/state/selectors/cursos.selectors';
+import { selectorCursosCargados } from 'src/app/state/selectors/cursos.selectors';
 
 @Component({
   selector: 'app-cursos-inicio',
@@ -55,7 +55,6 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
       next: (cursos: Curso[]) => {
         this.datosCursos = cursos;
         this.dataSource.data = this.datosCursos;
-        this.store.dispatch(cursosCargados({cursos: cursos}))
         this.cargando = false;
       }
     })
