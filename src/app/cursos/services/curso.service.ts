@@ -1,12 +1,12 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, filter, map, Observable, Subject, throwError } from 'rxjs';
+import { catchError, delay, filter, map, Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Curso } from '../../models/curso';
 
 @Injectable()
 export class CursoService {
-  
+
 
   constructor(
     private http: HttpClient
@@ -19,6 +19,7 @@ export class CursoService {
         'encoding': 'UTF-8'
       })
     }).pipe(
+      delay(2000),
       catchError(this.manejarError)
     )
   }
@@ -66,9 +67,9 @@ export class CursoService {
   private manejarError(error: HttpErrorResponse){
     if(error.error instanceof ErrorEvent){
       console.warn('Error del lado del cliente', error.error.message);
-    }else{  
+    }else{
       console.warn('Error del lado del servidor', error.error.message)
-    } 
+    }
 
     return throwError(() => new Error('Error en la comunicacion HTTP'));
   }

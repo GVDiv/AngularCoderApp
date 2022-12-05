@@ -8,6 +8,9 @@ import { CursoService } from '../../services/curso.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { cargarCursos, cursosCargados } from 'src/app/state/actions/cursos.actions';
 
 @Component({
   selector: 'app-cursos-inicio',
@@ -16,23 +19,27 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CursosInicioComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  cargando = true;
 
   sesion$!: Observable<Sesion>;
   cursos$!: Observable<Curso[]>;
 
   suscripcion: any;
   datosCursos!: Curso[];
-  
+
   dataSource = new MatTableDataSource<Curso>([]);
   displayedColumns: string[] = ['nombre', 'comision', 'profesor', 'fechaInicio', 'fechaFin', 'detalle', 'editar', 'eliminar'];
-  
+
 
   constructor(
     private sesionService: SesionService,
     private cursoService: CursoService,
     private router: Router,
     private toastr: ToastrService,
-  ) { }
+    private store: Store<AppState>
+  ) {
+    this.store.dispatch(cargarCursos());
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -40,13 +47,14 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+    console.log('actualizando el store'),
     this.suscripcion = this.cursoService.obtenerCursos().subscribe({
       next: (cursos: Curso[]) => {
         this.datosCursos = cursos;
-        this.dataSource.data = this.datosCursos
-        // console.log(cursos),
-        // console.log(this.datosCursos)
+        this.dataSource.data = this.datosCursos;
+        this.store.dispatch(cursosCargados({cursos}))
+        this.cargando = false;
+        console.log('se agregaron los cursos al store')
       }
     })
 
