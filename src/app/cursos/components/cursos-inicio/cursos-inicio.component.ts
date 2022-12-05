@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { delay, Observable, Subscription } from 'rxjs';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Curso } from 'src/app/models/curso';
 import { Sesion } from 'src/app/models/sesion';
@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { cargarCursos, cursosCargados } from 'src/app/state/actions/cursos.actions';
+import { selectorCargandoCursos, selectorCursosCargados } from 'src/app/state/selectors/cursos.selectors';
 
 @Component({
   selector: 'app-cursos-inicio',
@@ -47,16 +48,26 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log('actualizando el store'),
-    this.suscripcion = this.cursoService.obtenerCursos().subscribe({
+    this.cursos$ = this.store.select(selectorCursosCargados).pipe(
+      delay(2000)
+    );
+    this.suscripcion = this.cursos$.subscribe({
       next: (cursos: Curso[]) => {
         this.datosCursos = cursos;
         this.dataSource.data = this.datosCursos;
-        this.store.dispatch(cursosCargados({cursos}))
+        this.store.dispatch(cursosCargados({cursos: cursos}))
         this.cargando = false;
-        console.log('se agregaron los cursos al store')
       }
     })
+    // this.suscripcion = this.cursoService.obtenerCursos().subscribe({
+    //   next: (cursos: Curso[]) => {
+    //     this.datosCursos = cursos;
+    //     this.dataSource.data = this.datosCursos;
+    //     this.store.dispatch(cursosCargados({cursos}))
+    //     this.cargando = false;
+    //     console.log('se agregaron los cursos al store')
+    //   }
+    // })
 
     this.sesion$ = this.sesionService.obtenerSesion();
   }
