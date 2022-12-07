@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Curso } from 'src/app/models/curso';
 import { Sesion } from 'src/app/models/sesion';
@@ -9,24 +9,24 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.state';
-import { cargarCursos, cursosCargados } from 'src/app/state/actions/cursos.actions';
-import { selectorCursosCargados } from 'src/app/state/selectors/cursos.selectors';
+import { CursoState } from 'src/app/models/curso.state';
+import { loadCursosFailure, loadCursosSuccess } from '../../state/cursos.actions';
+import { selectStateCursos } from '../../state/cursos.selectors';
+import { selectSesionActiva } from 'src/app/core/state/sesion.selectors';
 
 @Component({
   selector: 'app-cursos-inicio',
   templateUrl: './cursos-inicio.component.html',
   styleUrls: ['./cursos-inicio.component.css']
 })
-export class CursosInicioComponent implements OnInit, AfterViewInit {
+export class CursosInicioComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   cargando = true;
 
   sesion$!: Observable<Sesion>;
   cursos$!: Observable<Curso[]>;
 
-  suscripcion: any;
-  datosCursos!: Curso[];
+  suscripcionCursos!: Subscription;
 
   dataSource = new MatTableDataSource<Curso>([]);
   displayedColumns: string[] = ['nombre', 'comision', 'profesor', 'fechaInicio', 'fechaFin', 'detalle', 'editar', 'eliminar'];
@@ -37,38 +37,32 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
     private cursoService: CursoService,
     private router: Router,
     private toastr: ToastrService,
-    private store: Store<AppState>
-  ) {
-    this.store.dispatch(cargarCursos());
-  }
+    private store: Store<[CursoState, Sesion]>
+  ) { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.sesion$ = this.sesionService.obtenerSesion();
+    this.sesion$ = this.store.select(selectSesionActiva);
   }
 
   ngOnInit(): void {
-    this.cursos$ = this.store.select(selectorCursosCargados).pipe(
-      delay(2000)
-    );
-    this.suscripcion = this.cursos$.subscribe({
-      next: (cursos: Curso[]) => {
-        this.datosCursos = cursos;
-        this.dataSource.data = this.datosCursos;
+    this.suscripcionCursos = this.cursoService.obtenerCursos().subscribe({
+      next: (cursos: Curso[])=>{
+        this.store.dispatch(loadCursosSuccess({cursos}));
+        this.dataSource.data = cursos;
         this.cargando = false;
+      },
+      error: (error: any) => {
+        this.store.dispatch(loadCursosFailure(error))
       }
     })
-    // this.suscripcion = this.cursoService.obtenerCursos().subscribe({
-    //   next: (cursos: Curso[]) => {
-    //     this.datosCursos = cursos;
-    //     this.dataSource.data = this.datosCursos;
-    //     this.store.dispatch(cursosCargados({cursos}))
-    //     this.cargando = false;
-    //     console.log('se agregaron los cursos al store')
-    //   }
-    // })
+    this.cursos$ = this.store.select(selectStateCursos);
+    this.sesion$ = this.store.select(selectSesionActiva);
+  }
 
-    this.sesion$ = this.sesionService.obtenerSesion();
+  ngOnDestroy(): void {
+      console.log('el componente cursos se esta destruyendo')
+      this.suscripcionCursos.unsubscribe();
   }
 
   listaCursos(){
@@ -86,6 +80,7 @@ export class CursosInicioComponent implements OnInit, AfterViewInit {
   eliminarCurso(id: number){
     this.cursoService.eliminarCurso(id);
     this.cursos$ = this.cursoService.obtenerCursos();
+    this.router.navigate(['']);
     this.toastr.error('El curso fue eliminado con exito!', 'Curso eliminado');
   }
 

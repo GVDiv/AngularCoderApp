@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from '../../services/curso.service';
 
@@ -11,11 +11,11 @@ import { CursoService } from '../../services/curso.service';
 })
 
 
-export class DetalleCursoComponent implements OnInit {
+export class DetalleCursoComponent implements OnInit, OnDestroy {
   curso$!: Observable<Curso>;
+  suscripcionDetalle!: Subscription;
 
-  suscription: any;
-  datosCurso: Curso = {
+  detalleCurso: Curso = {
     id: 0,
     nombre: '',
     comision: '',
@@ -29,7 +29,6 @@ export class DetalleCursoComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private cursoService: CursoService,
-
   ) { }
 
   ngOnInit(): void {
@@ -38,19 +37,18 @@ export class DetalleCursoComponent implements OnInit {
 
       this.curso$ = this.cursoService.obtenerCurso(id);
 
-      this.suscription = this.cursoService.obtenerCurso(id).subscribe({
+      this.suscripcionDetalle = this.cursoService.obtenerCurso(id).subscribe({
         next: (curso: Curso) => {
-          this.datosCurso = curso;
-          console.log(this.datosCurso)
-          console.log(curso)
+          this.detalleCurso = curso;
         }
       })
-
     })
-
-
-
-
   }
+
+  ngOnDestroy(): void {
+    this.suscripcionDetalle.unsubscribe();
+  }
+
+
 
 }

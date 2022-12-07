@@ -1,0 +1,28 @@
+<div class="detailContainer">
+    <div class="detail">
+        <div class="detailHeader">
+            <h1>Detalle de curso</h1>
+            <a routerLink="/cursos">
+                <mat-icon>close</mat-icon>
+            </a>
+        </div>
+        <div class="col-md-6">
+          <mat-card>
+              <mat-card-header>
+                  <mat-card-title>{{ detalleCurso.nombre }}</mat-card-title>
+                  <mat-card-subtitle>{{ detalleCurso.id }}</mat-card-subtitle>
+              </mat-card-header>
+
+              <img mat-card-image [src]="detalleCurso.imagen" alt="coderhouse">
+
+              <mat-card-content>
+                  <p>Comision {{ detalleCurso.comision }}</p>
+                  <p>Impartido por {{ detalleCurso.profesor }}</p>
+                  <p>Inicial el {{ detalleCurso.fechaInicio | date: 'dd/MM/YYYY' }}</p>
+                  <p>Finaliza el {{ detalleCurso.fechaFin | date: 'dd/MM/YYYY' }}</p>
+                  <p>Matricula {{ detalleCurso.inscripcionAbierta }}</p>
+              </mat-card-content>
+          </mat-card>
+        </div>
+    </div>
+</div>

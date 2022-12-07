@@ -4,6 +4,4 @@ export interface Usuario{
     contrasena: string;
     admin: boolean;
     estudiante: boolean;
-    // canLoad: boolean;
-   
 }

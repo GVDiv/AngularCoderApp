@@ -63,7 +63,7 @@ export class EditarCursoComponent implements OnInit {
 
     this.cursoService.editarCurso(c);
     this.toastr.info('El curso fue editado con exito!', 'Curso editado');
-    this.router.navigate(['cursos/listar'])
+    this.router.navigate([''])
   }
 
 }
