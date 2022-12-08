@@ -43,7 +43,6 @@ export class AgregarCursoComponent implements OnInit {
       inscripcionAbierta: this.formulario.value.inscripcionAbierta,
       imagen: 'https://parentesis.com/imagesPosts/coder00.jpg'
     };
-    console.log(curso);
     this.dialogRef.close();
     this.cursoService.agregarCurso(curso);
     this.toastr.success('El curso fue registrado con exito!', 'Curso registrado');

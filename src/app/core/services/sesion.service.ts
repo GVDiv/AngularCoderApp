@@ -13,12 +13,7 @@ export class SesionService {
 
   constructor(
     private http: HttpClient
-  ) {
-    // const sesion: Sesion = {
-    //   sesionActiva: false
-    // };
-    // this.sesionSubject = new BehaviorSubject(sesion);
-  }
+  ) {}
 
   login(usuario: Usuario): Observable<Usuario>{
     return this.http.get<Usuario[]>(`${environment.api}/usuarios`).pipe(
@@ -27,12 +22,4 @@ export class SesionService {
       })
     )
   }
-
-  // obtenerSesion(): Observable<Sesion>{
-  //   return this.sesionSubject.asObservable();
-  // }
-
-  // cerrarSesion(sesion: Sesion){
-  //    return this.sesionSubject.next(sesion);
-  // }
 }

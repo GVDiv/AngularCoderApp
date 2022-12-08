@@ -61,7 +61,6 @@ export class CursosInicioComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      console.log('el componente cursos se esta destruyendo')
       this.suscripcionCursos.unsubscribe();
   }
 

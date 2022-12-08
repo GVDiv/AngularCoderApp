@@ -24,7 +24,6 @@ export class AppComponent {
   opened = false;
 
   constructor(
-    // private sesionService: SesionService,
     private cursoService: CursoService,
     private store: Store<[AppState, Sesion]>,
     private router: Router,
@@ -33,9 +32,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.cursoService.obtenerCursos().subscribe((cursos: Curso[])=>{
-      console.log('actualizando store');
       this.store.dispatch(cursosCargados({cursos: cursos}));
-      console.log('se cargaron los cursos al store');
   })
     this.sesion$ = this.store.select(selectSesionActiva);
   }
@@ -43,9 +40,7 @@ export class AppComponent {
   cerrarSesion(){
     let sesion: Sesion = {
       sesionActiva: false,
-      // usuarioActivo?: Usuario,
     }
-    // this.sesionService.cerrarSesion(sesion);
     this.router.navigate(['autenticacion/login'])
   }
 
@@ -53,16 +48,12 @@ export class AppComponent {
     const dialogRef = this.dialog.open(AgregarCursoComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
     });
   }
   dialogListarCurso(){
     const dialogRef = this.dialog.open(ListaCursosComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
     });
   }
 
