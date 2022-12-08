@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCERS } from './state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { environment } from '../environments/environment';
     AlumnosModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot(ROOT_REDUCERS),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, name: 'Prueba ngrx' })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, name: 'Prueba ngrx' }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

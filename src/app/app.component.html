@@ -14,8 +14,8 @@
                 <span class="usuarioActivo">{{ sesion.usuarioActivo?.usuario }}</span>
                 <mat-icon>person</mat-icon>
             </a>
-            <a mat-button (click)="cerrarSesion()">
-                <!-- boton de logout -->
+            <a mat-button routerLink="inscripciones/lista">
+                <!-- boton de inscripciones -->
                 <mat-icon>login</mat-icon>
             </a>
             <a mat-button routerLink="autenticacion/login">
