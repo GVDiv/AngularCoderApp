@@ -10,16 +10,12 @@
                 <mat-icon>home</mat-icon>
             </button>
             <div class="espacio"></div>
-            <a mat-button routerLink="usuario" *ngIf="sesion.usuarioActivo?.admin">
+            <a mat-button *ngIf="sesion.usuarioActivo?.admin">
                 <span class="usuarioActivo">{{ sesion.usuarioActivo?.usuario }}</span>
                 <mat-icon>person</mat-icon>
             </a>
-            <a mat-button routerLink="inscripciones/lista">
-                <!-- boton de inscripciones -->
+            <a mat-button (click)="cerrarSesion()">
                 <mat-icon>login</mat-icon>
-            </a>
-            <a mat-button routerLink="autenticacion/login">
-                <mat-icon>settings</mat-icon>
             </a>
         </mat-toolbar>
     </div>
@@ -39,28 +35,11 @@
                     <mat-icon>upgrade</mat-icon>
                     <p>Agregar curso</p>
                 </button>
-                <!-- <button  mat-raised-button
-                        (click)="dialogListarCurso()"
-                        *ngIf="sesion.usuarioActivo?.admin">
-                    <mat-icon>editsquare</mat-icon>
-                    <p>Editar curso</p>
-                </button> -->
-                <button  mat-raised-button routerLink="cursos" >
-                    <mat-icon>school</mat-icon>
-                    <p>Estudiante</p>
+                <button  mat-raised-button routerLink="inscripciones/lista" >
+                    <mat-icon>event upcoming</mat-icon>
+                    <p>Inscripciones</p>
                 </button>
             </ng-container>
-
-            <!-- <ng-container *ngIf="sesion$ | async as sesion">
-                <div>
-                    <button mat-raised-button [matMenuTriggerFor]="menuAlumnos">Alumnos</button>
-                    <mat-menu #menuAlumnos="matMenu">
-                        <button mat-menu-item routerLink="alumnos">Alumnos Inicio</button>
-                        <button mat-menu-item routerLink="alumnos/agregar" *ngIf="sesion.usuarioActivo?.admin">Nuevo alumno</button>
-                        <button mat-menu-item routerLink="alumnos/listar" *ngIf="sesion.usuarioActivo?.admin">Lista alumnos</button>
-                    </mat-menu>
-                </div>
-            </ng-container> -->
         </div>
     </mat-sidenav>
 

@@ -25,22 +25,21 @@ export class AppComponent {
 
   constructor(
     private cursoService: CursoService,
-    private store: Store<[AppState, Sesion]>,
+    private storeSesion: Store<Sesion>,
+    private storeState: Store<AppState>,
     private router: Router,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.cursoService.obtenerCursos().subscribe((cursos: Curso[])=>{
-      this.store.dispatch(cursosCargados({cursos: cursos}));
+      this.storeState.dispatch(cursosCargados({cursos: cursos}));
   })
-    this.sesion$ = this.store.select(selectSesionActiva);
+    this.sesion$ = this.storeState.select(selectSesionActiva);
   }
 
   cerrarSesion(){
-    let sesion: Sesion = {
-      sesionActiva: false,
-    }
+    location.reload();
     this.router.navigate(['autenticacion/login'])
   }
 

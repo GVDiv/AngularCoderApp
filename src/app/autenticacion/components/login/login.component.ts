@@ -22,20 +22,12 @@ export class LoginComponent implements OnInit {
     private store: Store<Sesion>
   ){
     this.formularioLogin = fb.group({
-
-      // USUARIOS DE MOCKAPI
-      // usuario estudiante: user: Mariela52, contrasena: rd5YGDpiL9ppq56
-      // usuario admin: user: Weldon13, contrasena: LfddWjfTFJw_94f
-      // usuario admin y estudiante: user: Candice_Medhurst49, contrasena: i61SDS1n5CBz9EJ
-
-      usuario: new FormControl('Weldon13', [Validators.required]),
-      contrasena: new FormControl('LfddWjfTFJw_94f', [Validators.required, Validators.minLength(6)]),
+      usuario: new FormControl('', [Validators.required]),
+      contrasena: new FormControl('', [Validators.required, Validators.minLength(6)]),
       estudiante: new FormControl(false, [Validators.required]),
       admin: new FormControl(false, [Validators.required])
     })
   }
-
-
 
   ngOnInit(): void {
   }
@@ -52,6 +44,10 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['inicio']);
     });
 
+  }
+
+  registro(){
+    this.router.navigate(['autenticacion/registro'])
   }
 
 }

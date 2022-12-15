@@ -1,0 +1,11 @@
+span{
+    color: #fff;
+    font-size: 20px;
+    display: inline-block;
+    padding: 10px;
+    letter-spacing: 1px;
+    font-weight: 200;
+}
+.exito{
+    background-color: rgba(42, 128, 42, 0.752) ;
+}

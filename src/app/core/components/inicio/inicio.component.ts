@@ -24,8 +24,8 @@ export class InicioComponent implements OnInit {
     this.sesion$ = this.store.select(selectSesionActiva);
   }
 
-  verLogin(){
-    this.router.navigate(['autenticacion/login']);
+  registro(){
+    this.router.navigate(['autenticacion/registro'])
   }
 
 }

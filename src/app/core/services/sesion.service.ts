@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Sesion } from 'src/app/models/sesion';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,4 +22,24 @@ export class SesionService {
       })
     )
   }
+
+  registro(usuario: Usuario){
+    this.http.post(`${environment.api}/usuarios`, usuario).pipe(
+      catchError(this.manejarError)
+    ).subscribe()
+  }
+
+
+
+
+  private manejarError(error: HttpErrorResponse){
+    if(error.error instanceof ErrorEvent){
+      console.warn('Error del lado del cliente', error.error.message);
+    }else{
+      console.warn('Error del lado del servidor', error.error.message)
+    }
+
+    return throwError(() => new Error('Error en la comunicacion HTTP'));
+  }
+
 }

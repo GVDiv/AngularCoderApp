@@ -1,0 +1,41 @@
+<!-- Formulario de registro -->
+<div class="registro-container">
+    <form [formGroup]="formularioRegistro" (ngSubmit)="registro()" class="form">
+        <span class="form_title">Registro</span>
+
+        <div class="form_container">
+            <div class="form_group">
+                <mat-form-field appearance="fill" class="fill">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="usuario">
+                    <p *ngIf="formularioRegistro.get('usuario')?.touched && formularioRegistro.get('usuario')?.errors?.['required']">El campo usuario es requerido</p>
+                </mat-form-field>
+            </div>
+            <div class="form_group">
+                <mat-form-field appearance="fill" class="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" formControlName="contrasena">
+                    <p *ngIf="formularioRegistro.get('contrasena')?.touched && formularioRegistro.get('contrasena')?.errors?.['required']">El campo contraseña es requerido</p>
+                    <p *ngIf="formularioRegistro.get('contrasena')?.touched && formularioRegistro.get('contrasena')?.errors?.['minlength']">La contraseña debe tener minimo 6 caracteres</p>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <mat-slide-toggle formControlName="estudiante">Estudiante</mat-slide-toggle>
+            <mat-slide-toggle formControlName="admin">Admin</mat-slide-toggle>
+        </div>
+        <div class="mt-3">
+            <span>Si estas registrado ingresa a</span><br>
+            <a (click)="ingresar()" class="mt-3">Login</a>
+        </div>
+
+        <button class="form_submit"
+                type="submit"
+                mat-raised-button color="primary"
+                [disabled]="!formularioRegistro.valid"
+                >
+                Enviar
+        </button>
+    </form>
+
+</div>

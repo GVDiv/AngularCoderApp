@@ -1,7 +1,7 @@
-<!-- Formulario de registro/login -->
+<!-- Formulario de login -->
 <div class="login-container">
     <form [formGroup]="formularioLogin" (ngSubmit)="login()" class="form">
-        <span class="form_title">Registro</span>
+        <span class="form_title">Login</span>
 
         <div class="form_container">
             <div class="form_group">
@@ -21,15 +21,14 @@
             </div>
         </div>
         <div class="col-md-12">
-            <!-- <mat-slide-toggle formControlName="canLoad">Visita</mat-slide-toggle> -->
-            <mat-slide-toggle formControlName="estudiante">Estudiante</mat-slide-toggle>
-            <mat-slide-toggle formControlName="admin">Admin</mat-slide-toggle>
+            <span>Registrate para poder ingresar</span><br>
+            <a (click)="registro()" class="mt-3"> Registro</a>
         </div>
 
-        <button class="form_submit" 
-                type="submit" 
+        <button class="form_submit"
+                type="submit"
                 mat-raised-button color="primary"
-                [disabled]="!formularioLogin.valid"        
+                [disabled]="!formularioLogin.valid"
                 >
                 Entrar
         </button>
