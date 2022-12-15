@@ -7,7 +7,6 @@ import { Sesion } from 'src/app/models/sesion';
 import { CursoService } from '../../services/curso.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import { CursoState } from 'src/app/models/curso.state';
 import { loadCursosFailure, loadCursosSuccess } from '../../state/cursos.actions';
@@ -36,28 +35,28 @@ export class CursosInicioComponent implements OnInit, AfterViewInit, OnDestroy {
     private sesionService: SesionService,
     private cursoService: CursoService,
     private router: Router,
-    private toastr: ToastrService,
-    private store: Store<[CursoState, Sesion]>
+    private storeSesion: Store<Sesion>,
+    private storeCurso: Store<CursoState>
   ) { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.sesion$ = this.store.select(selectSesionActiva);
+    this.sesion$ = this.storeSesion.select(selectSesionActiva);
   }
 
   ngOnInit(): void {
     this.suscripcionCursos = this.cursoService.obtenerCursos().subscribe({
       next: (cursos: Curso[])=>{
-        this.store.dispatch(loadCursosSuccess({cursos}));
+        this.storeCurso.dispatch(loadCursosSuccess({cursos}));
         this.dataSource.data = cursos;
         this.cargando = false;
       },
       error: (error: any) => {
-        this.store.dispatch(loadCursosFailure(error))
+        this.storeCurso.dispatch(loadCursosFailure(error))
       }
     })
-    this.cursos$ = this.store.select(selectStateCursos);
-    this.sesion$ = this.store.select(selectSesionActiva);
+    this.cursos$ = this.storeCurso.select(selectStateCursos);
+    this.sesion$ = this.storeSesion.select(selectSesionActiva);
   }
 
   ngOnDestroy(): void {
@@ -80,7 +79,6 @@ export class CursosInicioComponent implements OnInit, AfterViewInit, OnDestroy {
     this.cursoService.eliminarCurso(id);
     this.cursos$ = this.cursoService.obtenerCursos();
     this.router.navigate(['']);
-    this.toastr.error('El curso fue eliminado con exito!', 'Curso eliminado');
   }
 
   filtrarCurso(event: Event){

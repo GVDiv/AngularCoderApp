@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from 'src/app/core/cursos/services/curso.service';
-import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -17,7 +16,6 @@ export class AgregarCursoComponent implements OnInit {
   constructor(
     private cursoService: CursoService,
     private router: Router,
-    private toastr: ToastrService,
     public dialogRef: MatDialogRef<AgregarCursoComponent>,
 
     @Inject(MAT_DIALOG_DATA) public data: Curso,
@@ -45,8 +43,7 @@ export class AgregarCursoComponent implements OnInit {
     };
     this.dialogRef.close();
     this.cursoService.agregarCurso(curso);
-    this.toastr.success('El curso fue registrado con exito!', 'Curso registrado');
-    this.router.navigate(['']); // localhost/cursos/listar
+    this.router.navigate(['']);
   }
 
   ngOnInit(): void {

@@ -11,7 +11,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { AlumnosModule } from './alumnos/alumnos.module';
-import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCERS } from './state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -34,7 +33,6 @@ import { EffectsModule } from '@ngrx/effects';
     AutenticacionModule,
     CursosModule,
     AlumnosModule,
-    ToastrModule.forRoot(),
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, name: 'Prueba ngrx' }),
     EffectsModule.forRoot([])

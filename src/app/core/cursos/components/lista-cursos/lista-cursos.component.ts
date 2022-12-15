@@ -4,7 +4,6 @@ import { Curso } from 'src/app/models/curso';
 import { CursoService } from 'src/app/core/cursos/services/curso.service';
 import { Router } from '@angular/router';
 import { Sesion } from 'src/app/models/sesion';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -18,7 +17,6 @@ export class ListaCursosComponent implements OnInit {
   constructor(
     private cursoService: CursoService,
     private router: Router,
-    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +26,6 @@ export class ListaCursosComponent implements OnInit {
   eliminarCurso(id: number){
     this.cursoService.eliminarCurso(id);
     this.cursos$ = this.cursoService.obtenerCursos();
-    this.toastr.error('El curso fue eliminado con exito!', 'Curso eliminado');
   }
 
   editarCurso(curso: Curso){
