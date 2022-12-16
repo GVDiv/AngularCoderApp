@@ -19,5 +19,21 @@
 }
 .detailHeader{
     display: flex;
+    width: 90%;
     justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.detailHeader span{
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+.detailHeader a{
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #e70505;
+    font-size: 18px;
 }

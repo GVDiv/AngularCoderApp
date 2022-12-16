@@ -6,15 +6,17 @@ export const selectCursosState = createFeatureSelector<CursoState>(
   fromCursos.cursosFeatureKey
 );
 
-export const selectStateCursos = createSelector(
-  selectCursosState,
-  (state: CursoState) => state.cursos
-)
-
 export const selectStateCargando = createSelector(
   selectCursosState,
-  (state: CursoState) => state.cargando
+  (state) => state.cargando
 )
+
+export const selectStateCursos = createSelector(
+  selectCursosState,
+  (state) => state.cursos
+)
+
+
 
 
 

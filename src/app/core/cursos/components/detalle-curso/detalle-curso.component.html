@@ -1,12 +1,13 @@
 <div class="detailContainer">
     <div class="detail">
         <div class="detailHeader">
-            <h1>Detalle de curso</h1>
-            <a routerLink="/cursos">
-                <mat-icon>close</mat-icon>
-            </a>
+            <span>Detalle de curso</span>
+            <a routerLink="/cursos">cerrar</a>
         </div>
-        <div class="col-md-6">
+        <div >
+            <mat-spinner *ngIf="!(curso$ | async)"></mat-spinner>
+        </div>
+        <div class="col-md-6" *ngIf="(curso$ | async)">
           <mat-card>
               <mat-card-header>
                   <mat-card-title>{{ detalleCurso.nombre }}</mat-card-title>

@@ -14,6 +14,7 @@ import { CursoService } from '../../services/curso.service';
 export class DetalleCursoComponent implements OnInit, OnDestroy {
   curso$!: Observable<Curso>;
   suscripcionDetalle!: Subscription;
+  cargando = true;
 
   detalleCurso: Curso = {
     id: 0,

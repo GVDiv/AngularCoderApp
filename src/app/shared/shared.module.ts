@@ -3,11 +3,17 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FiltroCursosPipe } from '../pipes/filtro-cursos.pipe';
+import { BooleanATextoPipe } from '../pipes/boolean-a-texto.pipe';
+import { BooleanoEstiloDirective } from '../directives/boolean-a-texto.directive';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FiltroCursosPipe,
+    BooleanATextoPipe,
+    BooleanoEstiloDirective
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -19,7 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FiltroCursosPipe,
+    BooleanATextoPipe,
+    BooleanoEstiloDirective
   ]
 })
 export class SharedModule { }

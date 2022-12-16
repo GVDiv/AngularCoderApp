@@ -18,7 +18,7 @@ export class RegistroComponent implements OnInit {
     private sesionService: SesionService,
     private router: Router,
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialogExito: MatDialog,
   ) {
     this.formularioRegistro = fb.group({
       usuario: new FormControl('', [Validators.required]),
@@ -40,7 +40,7 @@ export class RegistroComponent implements OnInit {
     }
     this.sesionService.registro(u);
 
-    const dialogExito = this.dialog.open(DialogExitoComponent);
+    const dialogExito = this.dialogExito.open(DialogExitoComponent);
     setTimeout(()=> {
       dialogExito.close();
     }, 2000)

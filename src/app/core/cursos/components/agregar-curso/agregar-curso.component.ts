@@ -2,8 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso';
-import { CursoService } from 'src/app/core/cursos/services/curso.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogExitoComponent } from 'src/app/autenticacion/components/dialog-exito/dialog-exito.component';
+import { Store } from '@ngrx/store';
+import { CursoState } from 'src/app/models/curso.state';
+import { agregarCurso } from '../../state/cursos.actions';
 
 @Component({
   selector: 'app-agregar-curso',
@@ -14,9 +17,10 @@ export class AgregarCursoComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(
-    private cursoService: CursoService,
     private router: Router,
     public dialogRef: MatDialogRef<AgregarCursoComponent>,
+    private dialogExito: MatDialog,
+    private storeCursos: Store<CursoState>,
 
     @Inject(MAT_DIALOG_DATA) public data: Curso,
   ) {
@@ -42,8 +46,12 @@ export class AgregarCursoComponent implements OnInit {
       imagen: 'https://parentesis.com/imagesPosts/coder00.jpg'
     };
     this.dialogRef.close();
-    this.cursoService.agregarCurso(curso);
-    this.router.navigate(['']);
+    this.storeCursos.dispatch(agregarCurso({curso}))
+    const dialogExito = this.dialogExito.open(DialogExitoComponent);
+    setTimeout(()=> {
+      dialogExito.close();
+    }, 2000)
+    this.router.navigate(['cursos'])
   }
 
   ngOnInit(): void {

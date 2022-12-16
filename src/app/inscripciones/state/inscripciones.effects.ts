@@ -9,7 +9,11 @@ import { Inscripcion } from 'src/app/models/inscripcion';
 
 @Injectable()
 export class InscripcionesEffects {
-
+  constructor(
+    private actions$: Actions,
+    private inscripciones: InscripcionService
+  )
+  {}
 
   cargarInscripcioness$ = createEffect(() => {
     return this.actions$.pipe(
@@ -47,9 +51,4 @@ export class InscripcionesEffects {
     )
   });
 
-  constructor(
-    private actions$: Actions,
-    private inscripciones: InscripcionService
-  )
-  {}
 }

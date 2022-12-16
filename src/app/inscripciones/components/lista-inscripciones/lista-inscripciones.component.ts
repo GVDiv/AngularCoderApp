@@ -21,7 +21,7 @@ import { EditarDialogComponent } from '../editar-dialog/editar-dialog.component'
   styleUrls: ['./lista-inscripciones.component.css']
 })
 export class ListaInscripcionesComponent implements OnInit {
-  // inscripciones$!: Observable<Inscripcion[]>;
+
   dataSource!: MatTableDataSource<Inscripcion>
   cursos$!: Observable<Curso[]>;
   usuarioActivo?: Usuario;

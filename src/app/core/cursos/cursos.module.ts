@@ -13,6 +13,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { DetalleCursoComponent } from './components/detalle-curso/detalle-curso.component';
 import { StoreModule } from '@ngrx/store';
 import { cursosFeatureKey, reducer } from './state/cursos.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CursosEffects } from './state/cursos.effects';
 
 
 @NgModule({
@@ -29,8 +31,8 @@ import { cursosFeatureKey, reducer } from './state/cursos.reducer';
     CursosRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    StoreModule.forFeature(cursosFeatureKey, reducer)
-    // EffectsModule.forFeature([CursosEffects])
+    StoreModule.forFeature(cursosFeatureKey, reducer),
+    EffectsModule.forFeature([CursosEffects])
   ],
   providers: [
     CursoService
